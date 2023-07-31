@@ -1,27 +1,12 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: role-grantor
+  # "namespace" omitted since ClusterRoles are not namespaced
+  name: secret-reader
 rules:
-- apiGroups: ["rbac.authorization.k8s.io"]
-  resources: ["rolebindings"]
-  verbs: ["create"]
-- apiGroups: ["rbac.authorization.k8s.io"]
-  resources: ["clusterroles"]
-  verbs: ["bind"]
-  # omit resourceNames to allow binding any ClusterRole
-  resourceNames: ["admin","edit","view"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: role-grantor-binding
-  namespace: user-1-namespace
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: role-grantor
-subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: User
-  name: user-1
+- apiGroups: [""]
+  #
+  # at the HTTP level, the name of the resource for accessing Secret
+  # objects is "secrets"
+  resources: ["secrets"]
+  verbs: ["get", "watch", "list"] 
