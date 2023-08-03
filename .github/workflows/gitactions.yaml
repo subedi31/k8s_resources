@@ -21,12 +21,12 @@ jobs:
       run: |
         helm version
         
-    - name: uninstall previous gatekeeper
-      run: | 
-            helm delete gatekeeper --namespace gatekeeper-system
-    - name: uninstall previous gatekeeper CRDs
-      run: |
-          kubectl delete crd -l gatekeeper.sh/system=yes
+    
+      
+            
+    
+      
+          
 
     
       
