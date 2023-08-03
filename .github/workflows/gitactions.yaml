@@ -20,10 +20,20 @@ jobs:
     - name: Check Helm version
       run: |
         helm version
+    - name: List the Pods of the Cluster
+      run: |
+          kubectl get po -A
+
+    - name: uninstall previous gatekeeper
+      run: | 
+            helm delete gatekeeper --namespace gatekeeper-system
+    - name: uninstall previous gatekeeper CRDs
+      run: |
+          kubectl delete crd -l gatekeeper.sh/system=yes
 
     
       
-        
+      
         
 
         
