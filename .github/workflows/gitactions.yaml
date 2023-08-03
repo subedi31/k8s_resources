@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  check helm command:
+  check_helm_version:
     runs-on: ubuntu-latest
 
     steps:
