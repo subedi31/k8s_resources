@@ -25,14 +25,10 @@ jobs:
           exit 1
         fi
 
-    - name: Add Gatekeeper Helm repository
+    - name: Add Gatekeeper Helm repository and install gatekeeper
       run: |
         helm repo add gatekeeper https://open-policy-agent.github.io/gatekeeper/charts
-        helm repo update
-
-    - name: Install Gatekeeper using Helm
-      run: |
-        helm install gatekeeper gatekeeper/gatekeeper --namespace gatekeeper-system
+        helm install gatekeeper/gatekeeper --name-template=gatekeeper --namespace gatekeeper-system --create-namespace
 
     - name: Check Gatekeeper installation
       run: |
