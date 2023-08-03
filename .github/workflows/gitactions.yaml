@@ -3,7 +3,7 @@ name: Check Helm Installation
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   check_helm:
