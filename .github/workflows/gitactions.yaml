@@ -1,4 +1,4 @@
-name: Check Helm and Gatekeeper
+name: Check Helm Command
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  check_helm_and_gatekeeper:
+  check_helm_command:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,23 +21,23 @@ jobs:
       run: |
         helm version
 
-    - name: Install Gatekeeper with Helm
-      run: |
-        # Add the Helm repository for Gatekeeper
-        helm repo add gatekeeper https://open-policy-agent.github.io/gatekeeper/charts
+    
+      
+        
+        
 
-        # Update the Helm repositories
-        helm repo update
+        
+        
 
-        # Install Gatekeeper
-        helm install gatekeeper gatekeeper/gatekeeper
+        
+    
 
-    - name: Check Gatekeeper installation
-      run: |
-        # List all Helm releases to check if 'gatekeeper' is installed
-        helm list
+    
+      
+      
+      
 
-    # Add other steps as needed for your workflow
+    
 
           
 
