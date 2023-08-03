@@ -3,7 +3,7 @@ name: Check Helm and Gatekeeper Installation
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   check_helm_and_gatekeeper:
