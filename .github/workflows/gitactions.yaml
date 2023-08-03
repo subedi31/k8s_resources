@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  check_helm_and_gatekeeper:
+  check helm command:
     runs-on: ubuntu-latest
 
     steps:
