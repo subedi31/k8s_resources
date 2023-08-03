@@ -1,4 +1,4 @@
-name: Check Helm and Gatekeeper Installation
+name: Check Helm command
 
 on:
   push:
@@ -20,22 +20,10 @@ jobs:
 
     - name: Check Helm version
       run: |
-        if ! helm version; then
-          echo "Helm is not installed"
-          exit 1
-        fi
+         helm version
+          
 
-    - name: Add Gatekeeper Helm repository and install gatekeeper
-      run: |
-        helm repo add gatekeeper https://open-policy-agent.github.io/gatekeeper/charts
-        helm install gatekeeper/gatekeeper --name-template=gatekeeper --namespace gatekeeper-system --create-namespace
-
-    - name: Check Gatekeeper installation
-      run: |
-        if ! kubectl get pods -n gatekeeper-system | grep gatekeeper; then
-          echo "Gatekeeper is not installed"
-          exit 1
-        fi
+    
 
          
 
