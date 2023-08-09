@@ -12,19 +12,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Start minikube
         uses: medyagh/setup-minikube@master
+
       - name: Verify Cluster Access
-        run: kubectl cluster-info
-      env:
-        KUBECONFIG: ${{ secrets.KUBECONFIG }}
+        run: |
+          kubectl cluster-info
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
-       - name: Debug Kubeconfig
+      - name: Debug Kubeconfig
         run: cat $HOME/.kube/config
-      env:
-        KUBECONFIG: ${{ secrets.KUBECONFIG }}
-
-
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
       - name: Deploy Terraform Modules
         run: |
@@ -43,8 +44,6 @@ jobs:
           cd ../networkpolicy
           terraform init
           terraform apply -auto-approve
-
-          # Add environment variables here if needed
 
       - name: Check ClusterRoles
         run: |
