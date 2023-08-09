@@ -3,7 +3,7 @@ variable "namespace_name" {
   type        = string
   default     = "default"  # Change this to your desired default value
 }
-module "helm_release" "namespace" {
+resource "helm_release" "namespace" {
   chart     = "./helm-namespace"
   name      = "namespace-template"
   namespace = var.namespace_name
