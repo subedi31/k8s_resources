@@ -18,9 +18,9 @@ jobs:
 
       - name: Deploy with Terraform
         run: |
-          cd k8s_resources/namespace  # Navigate to the directory containing main.tf
           terraform init
           terraform apply -auto-approve
+          cd k8s_resources/namespace 
         env:
           TF_VAR_name_namespace: feature-namespace
           TF_VAR_label_namespace: demo-namespace
