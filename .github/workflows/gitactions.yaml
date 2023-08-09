@@ -1,4 +1,4 @@
-name: Deploy Namespace with Terraform
+ name: Test Terraform Resources
 
 on:
   push:
@@ -6,28 +6,54 @@ on:
       - master
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Minikube
+        run: |
+          # Set up Minikube here
+
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Deploy with Terraform
+      - name: Deploy Terraform Modules
         run: |
+          cd modules/cluster-roles
           terraform init
           terraform apply -auto-approve
-        env:
-          TF_VAR_name_namespace: feature-namespace
-          TF_VAR_label_namespace: demo-namespace
 
-    
-      
-            
-    
+          cd ../namespace
+          terraform init
+          terraform apply -auto-approve
+
+          cd ../roles
+          terraform init
+          terraform apply -auto-approve
+
+          cd ../network_policy
+          terraform init
+          terraform apply -auto-approve
+
+      - name: Check ClusterRoles
+        run: |
+          kubectl get clusterroles
+
+      - name: Check Namespaces
+        run: |
+          kubectl get namespaces
+
+      - name: Check Roles
+        run: |
+          kubectl get roles --all-namespaces
+
+      - name: Check NetworkPolicies
+        run: |
+          kubectl get networkpolicies --all-namespaces
+
       
           
 
