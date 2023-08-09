@@ -1,0 +1,3 @@
+name_namespace: my-namespace
+resources: ["pods"]
+verbs: ["get", "watch", "list"]
