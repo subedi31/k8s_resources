@@ -3,10 +3,11 @@ variable "resource_names" {
   type        = list(string)
   default     = ["admin", "edit", "view"]
 }
-
 resource "helm_release" "cluster_role_deploy" {
-  chart     = "./modules/cluster-roles/helm-cluster_role" 
-  name      = "cluster-role-chart"
+  chart = "./modules/cluster-roles/helm-cluster_role"
+  name  = "cluster-role-chart"
+
+  values = [file("${path.module}/modules/cluster-roles/helm-cluster_role/values.yaml")]
 
   set {
     name  = "cluster_role_yaml"
@@ -14,6 +15,10 @@ resource "helm_release" "cluster_role_deploy" {
       resource_names = var.resource_names
     })
   }
+
+  depends_on = [
+    file("./modules/cluster-roles/helm-cluster_role/templates/cluster_roles.yaml")
+  ]
 }
 
 
