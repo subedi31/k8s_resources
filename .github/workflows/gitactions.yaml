@@ -13,6 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install conntrack
+        run: |
+          sudo apt-get update
+          sudo apt-get install conntrack
+
       - name: Install Minikube
         run: |
           curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
@@ -44,7 +49,7 @@ jobs:
           terraform init
           terraform apply -auto-approve
 
-          
+          # Add environment variables here if needed
 
       - name: Check ClusterRoles
         run: |
