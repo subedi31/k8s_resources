@@ -12,24 +12,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Install conntrack
-        run: |
-          sudo apt-get update
-          sudo apt-get install conntrack
-
-      - name: Install Minikube
-        run: |
-          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-          sudo install minikube-linux-amd64 /usr/local/bin/minikube
-
-      - name: Set up Minikube
-        run: |
-          minikube start --vm-driver=none
-          minikube addons enable ingress
-
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
+      - name: Start minikube
+        uses: medyagh/setup-minikube@master
+      
 
       - name: Deploy Terraform Modules
         run: |
