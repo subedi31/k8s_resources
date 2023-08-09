@@ -1,9 +1,11 @@
-resource "helm_release" "namespace" {
-  name       = "namespace-template"
-  repository = "./namespace"
-  chart      = "helm-namespace"
-  namespace  = var.namespace_name
-  values     = [file("./helm-namespace/values.yaml")]
-
+variable "namespace_name" {
+  description = "Name of the namespace"
+  type        = string
+  default     = "default"  # Change this to your desired default value
 }
 
+resource "helm_release" "namespace" {
+  chart     = "./modules/namespace/helm-namespace"
+  name      = "namespace-template"
+  namespace = var.namespace_name
+}
