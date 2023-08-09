@@ -16,6 +16,10 @@ jobs:
       - name: Start minikube
         uses: medyagh/setup-minikube@master
 
+      - name: Set up Kubernetes environment
+        run: |
+          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+
       - name: Deploy Terraform Modules
         run: |
           cd modules/namespace
