@@ -1,6 +1,5 @@
 resource "helm_release" "cluster_role_deploy" {
   name       = "cluster-role-chart"
-  repository = "https://example.com/charts"  # Replace with your Helm chart repository URL
   chart      = "./cluster-roles/helm-cluster_role"
 
   set {
