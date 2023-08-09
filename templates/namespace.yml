@@ -1,5 +1,0 @@
-# my-namespace-quota/templates/namespace.yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: my-namespace

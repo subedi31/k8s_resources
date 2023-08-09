@@ -1,4 +1,4 @@
-name: Check Helm command
+name: Deploy Namespace with Terraform
 
 on:
   push:
@@ -6,22 +6,24 @@ on:
       - master
 
 jobs:
-  check_helm_version:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install Helm
-      run: |
-        curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-        helm version
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
 
-    - name: Check Helm version
-      run: |
-         helm version
-          
+      - name: Deploy with Terraform
+        run: |
+          terraform init
+          terraform apply -auto-approve
+        env:
+          TF_VAR_name_namespace: feature-namespace
+          TF_VAR_label_namespace: demo-namespace
+
 
     
 
