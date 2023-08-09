@@ -4,8 +4,8 @@ variable "namespace_name" {
   default     = "default"  # Change this to your desired default value
 }
 resource "helm_release" "namespace" {
-  chart     = "${path.root}/helm-namespace"
-  values    = "${path.root}/helm-namespace"
+  chart     = "./helm-namespace"
+  values    = "./helm-namespace/values.yaml"
   name      = "namespace-template"
   namespace = var.namespace_name
 }
