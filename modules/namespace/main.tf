@@ -4,6 +4,9 @@ variable "namespace_name" {
   default     = "default"  # Change this to your desired default value
 }
 
+provider "helm" {
+  kubeconfig = "$HOME/.kube/config"
+}
 
 resource "helm_release" "namespace" {
   kubeconfig = "$HOME/.kube/config"
