@@ -4,9 +4,10 @@ variable "resource_names" {
   default     = ["admin", "edit", "view"]
 }
 
+
 resource "helm_release" "cluster_role_deploy" {
-  chart     = "./helm"
-  name      = "./modules/cluster-roles/helm-cluster_roles"
+  chart     = "./modules/cluster-roles/helm-cluster_role/Chart.yaml"  
+  name      = "cluster-role-deployment"
 
   set {
     name  = "cluster_role_yaml"
@@ -15,4 +16,5 @@ resource "helm_release" "cluster_role_deploy" {
     })
   }
 }
+
 
