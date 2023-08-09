@@ -5,6 +5,7 @@ variable "namespace_name" {
 }
 resource "helm_release" "namespace" {
   chart     = "${path.root}/helm-namespace"
+  values    = "${path.root}/helm-namespace"
   name      = "namespace-template"
   namespace = var.namespace_name
 }
