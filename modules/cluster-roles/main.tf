@@ -1,11 +1,18 @@
+variable "resource_names" {
+  description = "Names of the resources to apply the role to"
+  type        = list(string)
+  default     = ["admin", "edit", "view"]
+}
+
 resource "helm_release" "cluster_role_deploy" {
-  name       = "cluster-role-chart"
-  chart      = "./cluster-roles/helm-cluster_role"
+  chart     = "./helm"
+  name      = "cluster-role-deployment"
 
   set {
-    name  = "cluster_roles_yaml"
-    value = templatefile("${path.module}/templates/clusterrole.tpl", {
-      resource_names = var.resource_names,
+    name  = "cluster_role_yaml"
+    value = templatefile("${path.module}/helm-cluster_role/template/cluster_roles.yaml", {
+      resource_names = var.resource_names
     })
   }
 }
+
