@@ -4,8 +4,11 @@ variable "namespace_name" {
   default     = "default"  # Change this to your desired default value
 }
 
+
 resource "helm_release" "namespace" {
+  kubeconfig = "$HOME/.kube/config"
   chart     = "${path.root}/helm-namespace"
   name      = "namespace-template"
   namespace = var.namespace_name
+
 }
