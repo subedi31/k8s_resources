@@ -44,8 +44,7 @@ jobs:
           terraform init
           terraform apply -auto-approve
 
-        env:
-          # Set any environment variables needed for your modules
+          
 
       - name: Check ClusterRoles
         run: |
