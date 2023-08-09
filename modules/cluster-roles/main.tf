@@ -6,7 +6,7 @@ variable "resource_names" {
 
 
 resource "helm_release" "cluster_role_deploy" {
-  chart     = "./modules/cluster-roles/helm-cluster_role"  
+  chart     = "./modules/cluster-roles/helm-cluster_role" 
   name      = "cluster-role-chart"
 
   set {
