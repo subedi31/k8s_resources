@@ -1,6 +1,5 @@
 module "namespace" {
   source          = "./modules/namespace"
-  kubeconfig = "$HOME/.kube/config"
 }
 
 module "cluster-roles" {
