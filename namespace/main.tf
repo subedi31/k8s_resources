@@ -1,5 +1,3 @@
-provider "helm" {}
-
 resource "helm_release" "namespace" {
   name       = "namespace-template"
   repository = "./namespace"
