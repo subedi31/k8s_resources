@@ -3,7 +3,7 @@ name: Deploy Namespace with Terraform
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
