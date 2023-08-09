@@ -15,7 +15,7 @@ jobs:
       - name: Start minikube
         uses: medyagh/setup-minikube@master
 
-     - name: Set up kubeconfig
+      - name: Set up kubeconfig
         run: echo "$KUBECONFIG" > $HOME/.kube/config
 
       - name: Deploy Terraform Modules
