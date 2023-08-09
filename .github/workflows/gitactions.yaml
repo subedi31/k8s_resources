@@ -14,10 +14,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Start minikube
         uses: medyagh/setup-minikube@master
-
       - name: Set up kubeconfig
         run: |
-          echo "$KUBE_CONFIG_PATH" > $HOME/.kube/config
+          mkdir -p $HOME/.kube
+          echo "$KUBECONFIG" > $HOME/.kube/config
+
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
       - name: Deploy Terraform Modules
         run: |
           cd modules/namespace
