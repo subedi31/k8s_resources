@@ -5,7 +5,7 @@ variable "namespace_name" {
 }
 
 resource "helm_release" "namespace" {
-  chart     = "./helm-namespace/Chart.yaml"
+  chart     = "./helm-namespace/Chart.tgz"
   name      = "namespace-template"
   namespace = var.namespace_name
 }
