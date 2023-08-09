@@ -18,6 +18,7 @@ jobs:
 
       - name: Deploy with Terraform
         run: |
+          cd k8s_resources/namespace  # Navigate to the directory containing main.tf
           terraform init
           terraform apply -auto-approve
         env:
