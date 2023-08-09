@@ -1,4 +1,4 @@
- name: Test Terraform Resources
+name: Test Terraform Resources
 
 on:
   push:
@@ -34,9 +34,12 @@ jobs:
           terraform init
           terraform apply -auto-approve
 
-          cd ../network_policy
+          cd ../networkpolicy
           terraform init
           terraform apply -auto-approve
+
+        env:
+          # Set any environment variables needed for your modules
 
       - name: Check ClusterRoles
         run: |
@@ -53,6 +56,7 @@ jobs:
       - name: Check NetworkPolicies
         run: |
           kubectl get networkpolicies --all-namespaces
+
 
       
           
