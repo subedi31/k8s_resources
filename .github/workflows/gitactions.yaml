@@ -18,11 +18,11 @@ jobs:
 
       - name: Deploy Terraform Modules
         run: |
-          cd ../namespace
+          cd modules/namespace
           terraform init
           terraform apply -auto-approve
 
-          cd modules/cluster-roles
+          cd ../cluster-roles
           terraform init
           terraform apply -auto-approve
 
